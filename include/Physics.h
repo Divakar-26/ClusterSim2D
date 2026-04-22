@@ -65,7 +65,7 @@ private:
     GLuint ssbo;
 
     int windowW, windowH;
-    int substeps = 4;  // Number of physics substeps per frame
+    int substeps = 100;  // Number of physics substeps per frame
 
     void initializeBodies();
     void setupGPUBuffers();

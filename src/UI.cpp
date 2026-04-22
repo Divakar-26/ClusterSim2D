@@ -55,12 +55,11 @@ void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, i
     {
         ImGui::TextColored(ImVec4(0.2f, 1.0f, 0.8f, 1.0f), "Physics Settings");
         int substeps = physics->getSubsteps();
-        if(ImGui::SliderInt("Substeps", &substeps, 1, 10))
+        if(ImGui::SliderInt("Substeps##physics", &substeps, 1, 100))
         {
             physics->setSubsteps(substeps);
         }
-        ImGui::SameLine();
-        ImGui::HelpMarker("More substeps = more stable but slower");
+        ImGui::Text("(More = more stable but slower)");
         ImGui::Separator();
     }
     

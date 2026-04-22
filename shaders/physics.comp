@@ -76,39 +76,45 @@ void main()
     }
 
     // Circle-to-circle collision
-    for(uint j = id + 1; j < uint(count); j++)
+    // Circle-to-circle collision
+for (uint j = id + 1; j < uint(count); j++)
+{
+    vec2 delta = bodies[j].pos - bodies[id].pos;
+    float dist2 = dot(delta, delta);
+    float minDist = bodies[id].radius + bodies[j].radius;
+
+    if (dist2 < minDist * minDist)
     {
-        vec2 delta = bodies[j].pos - bodies[id].pos;
-        float dist = length(delta);
-        float minDist = bodies[id].radius + bodies[j].radius;
-        
-        if(dist < minDist && dist > 0.001)
+        float dist = sqrt(max(dist2, 0.000001));
+        vec2 normal = delta / dist;
+
+        // --- positional correction: ALWAYS fix penetration ---
+        float overlap = minDist - dist;
+
+        // small slop prevents jitter
+        float slop = 0.01;
+        float percent = 0.8;
+
+        float corrMag = max(overlap - slop, 0.0) * 0.5 * percent;
+        vec2 correction = corrMag * normal;
+
+        bodies[id].pos -= correction;
+        bodies[j].pos += correction;
+
+        // --- velocity impulse ---
+        // use standard relative velocity form
+        vec2 relVel = bodies[j].vel - bodies[id].vel;
+        float velAlongNormal = dot(relVel, normal);
+
+        // only if moving toward each other
+        if (velAlongNormal < 0.0)
         {
-            // Normalize collision vector
-            vec2 normal = delta / dist;
-            
-            // Relative velocity
-            vec2 relVel = bodies[id].vel - bodies[j].vel;
-            float velAlongNormal = dot(relVel, normal);
-            
-            // Only resolve if objects are moving towards each other
-            if(velAlongNormal > 0)
-            {
-                // Restitution coefficient
-                float restitution = 0.8;
-                
-                // Impulse scalar (equal mass assumption)
-                float impulse = -(1.0 + restitution) * velAlongNormal / 2.0;
-                
-                // Apply impulse
-                bodies[id].vel += impulse * normal;
-                bodies[j].vel -= impulse * normal;
-                
-                // Separate overlapping circles
-                float overlap = minDist - dist;
-                vec2 separation = (overlap / 2.0) * normal;
-                bodies[id].pos += separation;
-                bodies[j].pos -= separation;
+            float restitution = 0.8;
+            float impulse = -(1.0 + restitution) * velAlongNormal * 0.5; // equal mass
+            vec2 impulseVec = impulse * normal;
+
+            bodies[id].vel -= impulseVec;
+            bodies[j].vel += impulseVec;
             }
         }
     }
