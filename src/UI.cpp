@@ -3,6 +3,7 @@
 #include "backends/imgui_impl_sdl3.h"
 #include "backends/imgui_impl_opengl3.h"
 #include "Physics.h"
+#include "game.h"
 #include <glm/glm.hpp>
 #include <cmath>
 
@@ -39,7 +40,7 @@ void UI_EndFrame()
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, int windowH, Physics* physics)
+void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, int windowH, Physics* physics, float* zoom, Game* game)
 {
     ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(400, 550), ImGuiCond_FirstUseEver);
@@ -60,8 +61,40 @@ void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, i
             physics->setSubsteps(substeps);
         }
         ImGui::Text("(More = more stable but slower)");
+        
+        // Customizable borders
+        ImGui::TextColored(ImVec4(1.0f, 0.7f, 0.2f, 1.0f), "World Boundaries");
+        int w = physics->getWindowW();
+        int h = physics->getWindowH();
+        if(ImGui::SliderInt("Width##world", &w, 200, 10000))
+        {
+            physics->setWindowDimensions(w, h);
+        }
+        if(ImGui::SliderInt("Height##world", &h, 200, 10000))
+        {
+            physics->setWindowDimensions(w, h);
+        }
+        ImGui::Separator();
+        
+        // Physics Reinitialization
+        ImGui::TextColored(ImVec4(1.0f, 0.5f, 0.5f, 1.0f), "Reinitialize Physics");
+        static int bodyCount = 500;
+        ImGui::SliderInt("Particle Count##init", &bodyCount, 10, 50000);
+        if(ImGui::Button("Reinit Physics", ImVec2(-1, 0)) && game)
+        {
+            game->reinitPhysics(bodyCount);
+        }
         ImGui::Separator();
     }
+    
+    // Camera Settings
+    ImGui::TextColored(ImVec4(0.7f, 0.7f, 1.0f, 1.0f), "Camera");
+    if(zoom)
+    {
+        ImGui::SliderFloat("Zoom##camera", zoom, 0.1f, 5.0f);
+        ImGui::Text("(Scroll wheel or slider to zoom)");
+    }
+    ImGui::Separator();
     
     // Physics Stats
     ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.2f, 1.0f), "Physics Statistics");

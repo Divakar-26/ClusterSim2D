@@ -5,117 +5,66 @@ layout(local_size_x = 256) in;
 struct Body
 {
     vec2 pos;
-    vec2 vel;   
+    vec2 vel;
     float radius;
     float height;
     int shapeType;
     float pad;
 };
 
-layout(std430, binding = 0) buffer Bodies
-{
-    Body bodies[];
-};
+layout(std430, binding = 0) buffer Bodies { Body bodies[]; };
 
 uniform float dt;
-uniform int count;
-uniform int windowH;
-uniform int windowW;
+uniform int   count;
+uniform int   windowH;
+uniform int   windowW;
 
 void main()
 {
     uint id = gl_GlobalInvocationID.x;
-
-    if(id >= count) return;
-
-    // gravity
-    bodies[id].vel.y += 500.0 * dt;
-
-    // integrate
-    bodies[id].pos += bodies[id].vel * dt;
+    if (id >= uint(count)) return;
 
     float radius = bodies[id].radius;
 
-    // Floor collision
+    // Gravity
+    bodies[id].vel.y += 500.0 * dt;
+
+    // Integrate
+    bodies[id].pos += bodies[id].vel * dt;
+
+    // --- Wall collisions ---
+
+    // Floor
     float bottom = bodies[id].pos.y + radius;
-    
-    if(bottom >= windowH)
+    if (bottom >= float(windowH))
     {
-        bodies[id].pos.y = windowH - radius;
+        bodies[id].pos.y  = float(windowH) - radius;
         bodies[id].vel.y *= -0.8;
-        
-        // Apply friction when on floor
-        if(abs(bodies[id].vel.y) < 10.0)
-        {
+        if (abs(bodies[id].vel.y) < 10.0)
             bodies[id].vel.x *= 0.95;
-        }
     }
 
-    // Ceiling collision
+    // Ceiling
     float top = bodies[id].pos.y - radius;
-    if(top <= 0)
+    if (top <= 0.0)
     {
-        bodies[id].pos.y = radius;
+        bodies[id].pos.y  = radius;
         bodies[id].vel.y *= -0.8;
     }
 
-    // Right wall collision
+    // Right wall
     float right = bodies[id].pos.x + radius;
-    if(right >= windowW)
+    if (right >= float(windowW))
     {
-        bodies[id].pos.x = windowW - radius;
+        bodies[id].pos.x  = float(windowW) - radius;
         bodies[id].vel.x *= -0.8;
     }
 
-    // Left wall collision
+    // Left wall
     float left = bodies[id].pos.x - radius;
-    if(left <= 0)
+    if (left <= 0.0)
     {
-        bodies[id].pos.x = radius;
+        bodies[id].pos.x  = radius;
         bodies[id].vel.x *= -0.8;
     }
-
-    // Circle-to-circle collision
-    // Circle-to-circle collision
-for (uint j = id + 1; j < uint(count); j++)
-{
-    vec2 delta = bodies[j].pos - bodies[id].pos;
-    float dist2 = dot(delta, delta);
-    float minDist = bodies[id].radius + bodies[j].radius;
-
-    if (dist2 < minDist * minDist)
-    {
-        float dist = sqrt(max(dist2, 0.000001));
-        vec2 normal = delta / dist;
-
-        // --- positional correction: ALWAYS fix penetration ---
-        float overlap = minDist - dist;
-
-        // small slop prevents jitter
-        float slop = 0.01;
-        float percent = 0.8;
-
-        float corrMag = max(overlap - slop, 0.0) * 0.5 * percent;
-        vec2 correction = corrMag * normal;
-
-        bodies[id].pos -= correction;
-        bodies[j].pos += correction;
-
-        // --- velocity impulse ---
-        // use standard relative velocity form
-        vec2 relVel = bodies[j].vel - bodies[id].vel;
-        float velAlongNormal = dot(relVel, normal);
-
-        // only if moving toward each other
-        if (velAlongNormal < 0.0)
-        {
-            float restitution = 0.8;
-            float impulse = -(1.0 + restitution) * velAlongNormal * 0.5; // equal mass
-            vec2 impulseVec = impulse * normal;
-
-            bodies[id].vel -= impulseVec;
-            bodies[j].vel += impulseVec;
-            }
-        }
-    }
-} 
+}

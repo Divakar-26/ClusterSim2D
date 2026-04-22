@@ -396,4 +396,6 @@ CMakeFiles/app.dir/src/game.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/divakar/Desktop/GPU_Physics_Engine/include/shader_util.h
+ /home/divakar/Desktop/GPU_Physics_Engine/include/shader_util.h \
+ /home/divakar/Desktop/GPU_Physics_Engine/imgui/imgui.h \
+ /home/divakar/Desktop/GPU_Physics_Engine/imgui/imconfig.h

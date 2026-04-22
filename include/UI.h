@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 
 class Physics;
+class Game;
 struct Body;
 
 // Initialize ImGui with SDL3 and OpenGL
@@ -19,7 +20,7 @@ void UI_BeginFrame();
 void UI_EndFrame();
 
 // Render the debug UI (FPS, physics stats, particle info)
-void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, int windowH, Physics* physics);
+void UI_RenderDebug(float deltaTime, Body* bodies, int bodyCount, int windowW, int windowH, Physics* physics, float* zoom, Game* game);
 
 // Shutdown ImGui
 void UI_Shutdown();

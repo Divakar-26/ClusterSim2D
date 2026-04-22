@@ -12,6 +12,7 @@ all:
 	   -Iimgui \
 	   -Iimgui/backends \
 	   -L/usr/local/lib \
+	   -DPROJECT_ROOT="\"$(PWD)/\"" \
 	   -lSDL3 \
 	   -lGL \
 	   -o app

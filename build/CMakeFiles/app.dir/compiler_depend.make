@@ -1399,7 +1399,64 @@ CMakeFiles/app.dir/src/Physics.cpp.o: /home/divakar/Desktop/GPU_Physics_Engine/s
   /usr/include/asm-generic/errno-base.h \
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/12/bits/charconv.h \
-  /usr/include/c++/12/bits/basic_string.tcc
+  /usr/include/c++/12/bits/basic_string.tcc \
+  /usr/include/c++/12/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/c++/12/algorithm \
+  /usr/include/c++/12/bits/stl_algo.h \
+  /usr/include/c++/12/bits/algorithmfwd.h \
+  /usr/include/c++/12/bits/stl_heap.h \
+  /usr/include/c++/12/bits/stl_tempbuf.h \
+  /usr/include/c++/12/bits/uniform_int_dist.h \
+  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/12/pstl/execution_defs.h \
+  /usr/include/c++/12/iostream \
+  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/ios \
+  /usr/include/c++/12/exception \
+  /usr/include/c++/12/bits/exception_ptr.h \
+  /usr/include/c++/12/bits/cxxabi_init_exception.h \
+  /usr/include/c++/12/typeinfo \
+  /usr/include/c++/12/bits/nested_exception.h \
+  /usr/include/c++/12/bits/ios_base.h \
+  /usr/include/c++/12/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/12/bits/locale_classes.h \
+  /usr/include/c++/12/bits/locale_classes.tcc \
+  /usr/include/c++/12/system_error \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
+  /usr/include/c++/12/stdexcept \
+  /usr/include/c++/12/streambuf \
+  /usr/include/c++/12/bits/streambuf.tcc \
+  /usr/include/c++/12/bits/basic_ios.h \
+  /usr/include/c++/12/bits/locale_facets.h \
+  /usr/include/c++/12/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h \
+  /usr/include/c++/12/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h \
+  /usr/include/c++/12/bits/locale_facets.tcc \
+  /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/bits/ostream.tcc \
+  /usr/include/c++/12/istream \
+  /usr/include/c++/12/bits/istream.tcc
 
 CMakeFiles/app.dir/src/UI.cpp.o: /home/divakar/Desktop/GPU_Physics_Engine/src/UI.cpp \
   /usr/include/stdc-predef.h \
@@ -1749,7 +1806,142 @@ CMakeFiles/app.dir/src/UI.cpp.o: /home/divakar/Desktop/GPU_Physics_Engine/src/UI
   /usr/include/c++/12/bits/stl_function.h \
   /usr/include/c++/12/backward/binders.h \
   /usr/include/c++/12/bits/range_access.h \
-  /usr/include/c++/12/bits/vector.tcc
+  /usr/include/c++/12/bits/vector.tcc \
+  /home/divakar/Desktop/GPU_Physics_Engine/include/game.h \
+  /usr/include/c++/12/iostream \
+  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/ios \
+  /usr/include/c++/12/iosfwd \
+  /usr/include/c++/12/bits/stringfwd.h \
+  /usr/include/c++/12/bits/postypes.h \
+  /usr/include/c++/12/cwchar \
+  /usr/include/c++/12/exception \
+  /usr/include/c++/12/bits/exception_ptr.h \
+  /usr/include/c++/12/bits/cxxabi_init_exception.h \
+  /usr/include/c++/12/typeinfo \
+  /usr/include/c++/12/bits/nested_exception.h \
+  /usr/include/c++/12/bits/char_traits.h \
+  /usr/include/c++/12/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/c++locale.h \
+  /usr/include/c++/12/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/12/cctype \
+  /usr/include/ctype.h \
+  /usr/include/c++/12/bits/ios_base.h \
+  /usr/include/c++/12/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+  /usr/include/c++/12/bits/locale_classes.h \
+  /usr/include/c++/12/string \
+  /usr/include/c++/12/bits/ostream_insert.h \
+  /usr/include/c++/12/bits/cxxabi_forced.h \
+  /usr/include/c++/12/bits/basic_string.h \
+  /usr/include/c++/12/string_view \
+  /usr/include/c++/12/bits/string_view.tcc \
+  /usr/include/c++/12/ext/string_conversions.h \
+  /usr/include/c++/12/cstdlib \
+  /usr/include/c++/12/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/c++/12/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/c++/12/bits/charconv.h \
+  /usr/include/c++/12/bits/basic_string.tcc \
+  /usr/include/c++/12/bits/locale_classes.tcc \
+  /usr/include/c++/12/system_error \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
+  /usr/include/c++/12/stdexcept \
+  /usr/include/c++/12/streambuf \
+  /usr/include/c++/12/bits/streambuf.tcc \
+  /usr/include/c++/12/bits/basic_ios.h \
+  /usr/include/c++/12/bits/locale_facets.h \
+  /usr/include/c++/12/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h \
+  /usr/include/c++/12/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h \
+  /usr/include/c++/12/bits/locale_facets.tcc \
+  /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/bits/ostream.tcc \
+  /usr/include/c++/12/istream \
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/glm/gtc/matrix_transform.hpp \
+  /usr/include/glm/ext/matrix_projection.hpp \
+  /usr/include/glm/gtc/constants.hpp \
+  /usr/include/glm/ext/scalar_constants.hpp \
+  /usr/include/glm/ext/scalar_constants.inl \
+  /usr/include/glm/gtc/constants.inl \
+  /usr/include/glm/ext/matrix_projection.inl \
+  /usr/include/glm/ext/matrix_clip_space.hpp \
+  /usr/include/glm/ext/matrix_clip_space.inl \
+  /usr/include/glm/ext/matrix_transform.hpp \
+  /usr/include/glm/ext/matrix_transform.inl \
+  /usr/include/glm/gtc/matrix_transform.inl \
+  /usr/include/glm/gtc/type_ptr.hpp \
+  /usr/include/glm/gtc/quaternion.hpp \
+  /usr/include/glm/ext/vector_relational.hpp \
+  /usr/include/glm/ext/vector_relational.inl \
+  /usr/include/glm/detail/type_float.hpp \
+  /usr/include/glm/ext/quaternion_common.hpp \
+  /usr/include/glm/ext/quaternion_geometric.hpp \
+  /usr/include/glm/ext/quaternion_geometric.inl \
+  /usr/include/glm/ext/quaternion_common.inl \
+  /usr/include/glm/ext/quaternion_float.hpp \
+  /usr/include/glm/detail/type_quat.hpp \
+  /usr/include/glm/ext/quaternion_relational.hpp \
+  /usr/include/glm/ext/quaternion_relational.inl \
+  /usr/include/glm/detail/type_quat.inl \
+  /usr/include/glm/ext/quaternion_float_precision.hpp \
+  /usr/include/glm/ext/quaternion_double.hpp \
+  /usr/include/glm/ext/quaternion_double_precision.hpp \
+  /usr/include/glm/ext/quaternion_trigonometric.hpp \
+  /usr/include/glm/ext/quaternion_trigonometric.inl \
+  /usr/include/glm/ext/quaternion_transform.hpp \
+  /usr/include/glm/ext/quaternion_transform.inl \
+  /usr/include/glm/gtc/quaternion.inl \
+  /usr/include/glm/gtc/epsilon.hpp \
+  /usr/include/glm/detail/setup.hpp \
+  /usr/include/glm/gtc/epsilon.inl \
+  /usr/include/glm/gtc/vec1.hpp \
+  /usr/include/glm/ext/vector_bool1.hpp \
+  /usr/include/glm/ext/vector_bool1_precision.hpp \
+  /usr/include/glm/ext/vector_float1.hpp \
+  /usr/include/glm/ext/vector_float1_precision.hpp \
+  /usr/include/glm/ext/vector_double1.hpp \
+  /usr/include/glm/ext/vector_double1_precision.hpp \
+  /usr/include/glm/ext/vector_int1.hpp \
+  /usr/include/glm/ext/vector_int1_sized.hpp \
+  /usr/include/glm/ext/vector_uint1.hpp \
+  /usr/include/glm/ext/vector_uint1_sized.hpp \
+  /usr/include/c++/12/cstring \
+  /usr/include/glm/gtc/type_ptr.inl \
+  /home/divakar/Desktop/GPU_Physics_Engine/include/renderer2d.h
 
 CMakeFiles/app.dir/src/game.cpp.o: /home/divakar/Desktop/GPU_Physics_Engine/src/game.cpp \
   /usr/include/stdc-predef.h \
@@ -2231,7 +2423,9 @@ CMakeFiles/app.dir/src/game.cpp.o: /home/divakar/Desktop/GPU_Physics_Engine/src/
   /usr/include/c++/12/bits/stl_vector.h \
   /usr/include/c++/12/bits/stl_bvector.h \
   /usr/include/c++/12/bits/vector.tcc \
-  /home/divakar/Desktop/GPU_Physics_Engine/include/shader_util.h
+  /home/divakar/Desktop/GPU_Physics_Engine/include/shader_util.h \
+  /home/divakar/Desktop/GPU_Physics_Engine/imgui/imgui.h \
+  /home/divakar/Desktop/GPU_Physics_Engine/imgui/imconfig.h
 
 CMakeFiles/app.dir/src/glad.c.o: /home/divakar/Desktop/GPU_Physics_Engine/src/glad.c \
   /usr/include/stdc-predef.h \
@@ -3423,6 +3617,14 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/include/glm/gtc/matrix_transform.hpp:
 
+/usr/include/glm/ext/quaternion_common.inl:
+
+/home/divakar/Desktop/GPU_Physics_Engine/include/game.h:
+
+/home/divakar/Desktop/GPU_Physics_Engine/include/UI.h:
+
+/home/divakar/Desktop/GPU_Physics_Engine/src/UI.cpp:
+
 /usr/include/c++/12/bits/istream.tcc:
 
 /usr/include/c++/12/istream:
@@ -3454,6 +3656,12 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx512ifmavlintrin.h:
 
@@ -3583,6 +3791,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/include/glm/ext/matrix_float3x2_precision.hpp:
 
+/usr/include/c++/12/algorithm:
+
 /usr/include/c++/12/bits/utility.h:
 
 /usr/include/c++/12/bits/invoke.h:
@@ -3709,6 +3919,10 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/local/include/SDL3/SDL_gamepad.h:
 
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/glm/ext/matrix_float2x2.hpp:
+
 /usr/include/c++/12/ext/numeric_traits.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
@@ -3754,6 +3968,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/local/include/SDL3/SDL_cpuinfo.h:
 
 /usr/include/glm/detail/type_mat2x4.inl:
+
+/usr/include/c++/12/bits/uniform_int_dist.h:
 
 /usr/local/include/SDL3/SDL_endian.h:
 
@@ -3967,6 +4183,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/waitpkgintrin.h:
 
+/usr/include/c++/12/pstl/execution_defs.h:
+
 /usr/include/glm/detail/compute_common.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/dlfcn.h:
@@ -3994,6 +4212,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/local/include/SDL3/SDL_blendmode.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/c++/12/bits/algorithmfwd.h:
 
 /usr/include/signal.h:
 
@@ -4131,6 +4351,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/avx5124vnniwintrin.h:
 
+/usr/include/c++/12/bits/stl_tempbuf.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
 
 /usr/include/c++/12/bits/postypes.h:
@@ -4195,10 +4417,6 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /home/divakar/Desktop/GPU_Physics_Engine/src/Physics.cpp:
 
-/usr/include/glm/ext/matrix_float2x2.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/12/include/prfchwintrin.h:
 
 /usr/include/x86_64-linux-gnu/sys/wait.h:
@@ -4240,8 +4458,6 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/include/glm/detail/type_mat4x4.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
-
-/usr/include/time.h:
 
 /usr/include/linux/close_range.h:
 
@@ -4535,6 +4751,8 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/include/c++/12/bits/localefwd.h:
 
+/usr/include/c++/12/pstl/glue_algorithm_defs.h:
+
 /home/divakar/Desktop/GPU_Physics_Engine/src/game.cpp:
 
 /usr/include/x86_64-linux-gnu/c++/12/bits/c++locale.h:
@@ -4550,8 +4768,6 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
 
 /usr/include/c++/12/cctype:
-
-/home/divakar/Desktop/GPU_Physics_Engine/include/UI.h:
 
 /usr/include/c++/12/bits/ostream_insert.h:
 
@@ -4571,8 +4787,6 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/include/asm-generic/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
 /usr/include/c++/12/cstring:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
@@ -4581,11 +4795,9 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 
 /usr/include/c++/12/bits/basic_string.tcc:
 
-/home/divakar/Desktop/GPU_Physics_Engine/src/UI.cpp:
+/usr/include/c++/12/bits/stl_algo.h:
 
-/usr/include/glm/ext/quaternion_common.inl:
-
-/home/divakar/Desktop/GPU_Physics_Engine/include/game.h:
+/usr/include/c++/12/bits/stl_heap.h:
 
 /usr/include/c++/12/ios:
 
@@ -4600,5 +4812,3 @@ CMakeFiles/app.dir/src/shader_util.cpp.o: /home/divakar/Desktop/GPU_Physics_Engi
 /usr/include/c++/12/ext/atomicity.h:
 
 /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:

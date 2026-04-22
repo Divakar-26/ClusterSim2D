@@ -26,7 +26,8 @@ public:
     bool running()
     {
         return isRunning;
-    } 
+    }
+    void reinitPhysics(int count);
 
 private:
     SDL_Window *window;
@@ -40,6 +41,10 @@ private:
 
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
+
+    // Middle mouse panning
+    bool middleMouseDown = false;
+    int lastMouseX = 0, lastMouseY = 0;
 
     Renderer2D renderer;
     Physics physics;

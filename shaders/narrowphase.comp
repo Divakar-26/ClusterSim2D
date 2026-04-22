@@ -1,0 +1,86 @@
+#version 430
+
+layout(local_size_x = 256) in;
+
+struct Body
+{
+    vec2 pos;
+    vec2 vel;
+    float radius;
+    float height;
+    int shapeType;
+    float pad;
+};
+
+layout(std430, binding = 0) buffer Bodies       { Body bodies[]; };
+layout(std430, binding = 1) buffer CellCounts   { int cellCounts[]; };
+layout(std430, binding = 2) buffer CellEntries  { int cellEntries[]; };
+
+uniform int   count;
+uniform float cellSize;
+uniform int   gridWidth;
+uniform int   gridHeight;
+uniform int   maxPerCell;
+
+void main()
+{
+    uint id = gl_GlobalInvocationID.x;
+    if (id >= uint(count)) return;
+
+    vec2 myPos    = bodies[id].pos;
+    float myRadius = bodies[id].radius;
+
+    int cx = clamp(int(myPos.x / cellSize), 0, gridWidth  - 1);
+    int cy = clamp(int(myPos.y / cellSize), 0, gridHeight - 1);
+
+    // Check 3x3 neighbourhood
+    for (int ny = cy - 1; ny <= cy + 1; ny++)
+    {
+        if (ny < 0 || ny >= gridHeight) continue;
+
+        for (int nx = cx - 1; nx <= cx + 1; nx++)
+        {
+            if (nx < 0 || nx >= gridWidth) continue;
+
+            int cell  = ny * gridWidth + nx;
+            int slots = min(cellCounts[cell], maxPerCell);
+
+            for (int s = 0; s < slots; s++)
+            {
+                int j = cellEntries[cell * maxPerCell + s];
+                if (j <= int(id)) continue;   // process each pair once
+
+                vec2 delta = bodies[j].pos - myPos;
+                float dist2 = dot(delta, delta);
+                float minDist = myRadius + bodies[j].radius;
+
+                if (dist2 >= minDist * minDist) continue;
+
+                float dist   = sqrt(max(dist2, 0.0001));
+                vec2  normal = delta / dist;
+
+                // Positional correction
+                float overlap  = minDist - dist;
+                float corrMag  = max(overlap - 0.01, 0.0) * 0.5 * 0.8;
+                vec2  corr     = corrMag * normal;
+
+                bodies[id].pos -= corr;
+                bodies[j].pos  += corr;
+
+                // Velocity impulse
+                vec2  relVel        = bodies[j].vel - bodies[id].vel;
+                float velAlongNormal = dot(relVel, normal);
+
+                if (velAlongNormal < 0.0)
+                {
+                    float restitution = 0.8;
+                    float impulse     = -(1.0 + restitution) * velAlongNormal * 0.5;
+                    vec2  impulseVec  = impulse * normal;
+
+                    bodies[id].vel -= impulseVec;
+                    bodies[j].vel  += impulseVec;
+                }
+            }
+        }
+    }
+}
