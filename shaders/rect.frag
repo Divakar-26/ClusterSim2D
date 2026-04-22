@@ -11,7 +11,7 @@ void main()
 {
     if(isCircle == 1)
     {
-        float dist = length(localPos - vec2(0.5));
+        float dist = length(localPos);
 
         if(dist > 0.5) 
             discard;
