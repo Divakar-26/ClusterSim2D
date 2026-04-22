@@ -29,23 +29,14 @@ void Physics::initializeBodies()
 {
     for (int i = 0; i < bodiesCount; i++)
     {
-        bodies[i].vel.x = rand() % 100;
-        bodies[i].vel.y = rand() % 50;
-        bodies[i].pos = {rand() % windowW, rand() % windowH};
+        bodies[i].vel.x = (rand() % 200) - 100;  // -100 to 100
+        bodies[i].vel.y = (rand() % 100) - 50;   // -50 to 50
+        bodies[i].pos = {50 + (rand() % (windowW - 100)), 50 + (rand() % (windowH - 100))};
         
-        // Alternate between circles and rectangles
-        if (i % 2 == 0)
-        {
-            bodies[i].shapeType = SHAPE_CIRCLE;
-            bodies[i].radius = 5 + (rand() % 10);
-            bodies[i].height = 0.0f;
-        }
-        else
-        {
-            bodies[i].shapeType = SHAPE_RECTANGLE;
-            bodies[i].radius = 10 + (rand() % 15);  // width
-            bodies[i].height = 5 + (rand() % 10);   // height
-        }
+        // All circles
+        bodies[i].shapeType = SHAPE_CIRCLE;
+        bodies[i].radius = 8 + (rand() % 12);  // radius 8-20
+        bodies[i].height = 0.0f;
         bodies[i].pad = 0.0f;
     }
 }
@@ -105,30 +96,38 @@ void Physics::addRectangle(glm::vec2 pos, glm::vec2 vel, float width, float heig
 
 void Physics::update(float deltaTime)
 {
-    glUseProgram(computeShader);
+    // Run multiple substeps for better stability
+    float subDeltaTime = deltaTime / substeps;
+    
+    for(int step = 0; step < substeps; step++)
+    {
+        glUseProgram(computeShader);
 
-    GLuint dtLoc = glGetUniformLocation(computeShader, "dt");
-    glUniform1f(dtLoc, deltaTime);
+        GLuint dtLoc = glGetUniformLocation(computeShader, "dt");
+        glUniform1f(dtLoc, subDeltaTime);
 
-    GLuint countLoc = glGetUniformLocation(computeShader, "count");
-    glUniform1i(countLoc, bodiesCount);
+        GLuint countLoc = glGetUniformLocation(computeShader, "count");
+        glUniform1i(countLoc, bodiesCount);
 
-    GLuint windowHLoc = glGetUniformLocation(computeShader, "windowH");
-    glUniform1i(windowHLoc, windowH);
+        GLuint windowHLoc = glGetUniformLocation(computeShader, "windowH");
+        glUniform1i(windowHLoc, windowH);
 
-    GLuint windowWLoc = glGetUniformLocation(computeShader, "windowW");
-    glUniform1i(windowWLoc, windowW);
+        GLuint windowWLoc = glGetUniformLocation(computeShader, "windowW");
+        glUniform1i(windowWLoc, windowW);
 
-    int groups = (bodiesCount + 255) / 256;
-    glDispatchCompute(groups, 1, 1);
-
-    glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+        int groups = (bodiesCount + 255) / 256;
+        glDispatchCompute(groups, 1, 1);
+        
+        glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_ALL_BARRIER_BITS);
+    }
 }
 
 Body* Physics::getGPUDataPtr()
 {
+    glBindBuffer(GL_COPY_READ_BUFFER, ssbo);
+    glMemoryBarrier(GL_ALL_BARRIER_BITS);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-    return (Body*)glMapBuffer(GL_SHADER_STORAGE_BUFFER, GL_READ_ONLY);
+    return (Body*)glMapBuffer(GL_SHADER_STORAGE_BUFFER, GL_READ_WRITE);
 }
 
 void Physics::releaseGPUDataPtr()

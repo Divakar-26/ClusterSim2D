@@ -39,6 +39,10 @@ public:
     // Update physics simulation
     void update(float deltaTime);
 
+    // Set number of physics substeps (default: 4)
+    void setSubsteps(int steps) { substeps = steps; }
+    int getSubsteps() const { return substeps; }
+
     // Get access to bodies data
     const std::vector<Body>& getBodies() const { return bodies; }
     int getBodiesCount() const { return bodiesCount; }
@@ -61,6 +65,7 @@ private:
     GLuint ssbo;
 
     int windowW, windowH;
+    int substeps = 4;  // Number of physics substeps per frame
 
     void initializeBodies();
     void setupGPUBuffers();

@@ -49,9 +49,7 @@ bool Game::init(const char *title)
     renderer.init(WINDOW_W, WINDOW_H);
 
     // Initialize physics system 
-    physics.init(10, WINDOW_W, WINDOW_H);
-    physics.addCircle({100, 100}, {50, 50}, 100.0f);
-    physics.addRectangle({200, 200}, {30, 20}, 15.0f, 10.0f);
+    physics.init(50, WINDOW_W, WINDOW_H);
 
     isRunning = true;
     return true;
@@ -110,7 +108,11 @@ void Game::render()
 
     // Begin UI frame
     UI_BeginFrame();
-    UI_RenderDebug(deltaTime);
+    
+    // Get physics bodies from GPU for UI display
+    Body *uiPtr = physics.getGPUDataPtr();
+    UI_RenderDebug(deltaTime, uiPtr, physics.getBodiesCount(), WINDOW_W, WINDOW_H, &physics);
+    physics.releaseGPUDataPtr();
 
     // CAMERA
     glm::mat4 view = glm::mat4(1.0f);
@@ -124,23 +126,11 @@ void Game::render()
 
     for (int i = 0; i < physics.getBodiesCount(); i++)
     {
-        if (ptr[i].shapeType == SHAPE_CIRCLE)
-        {
-            renderer.drawCircle(
-                ptr[i].pos.x,
-                ptr[i].pos.y,
-                ptr[i].radius,
-                {1, 1, 1, 1});
-        }
-        else if (ptr[i].shapeType == SHAPE_RECTANGLE)
-        {
-            renderer.drawRect(
-                ptr[i].pos.x,
-                ptr[i].pos.y,
-                ptr[i].radius,
-                ptr[i].height,
-                {1, 1, 1, 1});
-        }
+        renderer.drawCircle(
+            ptr[i].pos.x,
+            ptr[i].pos.y,
+            ptr[i].radius,
+            {1, 1, 1, 1});
     }
 
 
