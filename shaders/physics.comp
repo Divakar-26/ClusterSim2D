@@ -1,0 +1,91 @@
+#version 430
+
+layout(local_size_x = 256) in;
+
+struct Body
+{
+    vec2 pos;
+    vec2 vel;   
+    float radius;
+    float height;
+    int shapeType;
+    float pad;
+};
+
+layout(std430, binding = 0) buffer Bodies
+{
+    Body bodies[];
+};
+
+uniform float dt;
+uniform int count;
+uniform int windowH;
+uniform int windowW;
+
+void main()
+{
+    uint id = gl_GlobalInvocationID.x;
+
+    if(id >= count) return;
+
+    // gravity
+    bodies[id].vel.y += 500.0 * dt;
+
+    // integrate
+    bodies[id].pos += bodies[id].vel * dt;
+
+    // Calculate half-dimensions based on shape type
+    float halfWidth;
+    float halfHeight;
+    
+    if(bodies[id].shapeType == 0) // Circle
+    {
+        halfWidth = bodies[id].radius;
+        halfHeight = bodies[id].radius;
+    }
+    else // Rectangle
+    {
+        halfWidth = bodies[id].radius * 0.5;      // width / 2
+        halfHeight = bodies[id].height * 0.5;     // height / 2
+    }
+
+    // Floor collision
+    float bottom = bodies[id].pos.y + halfHeight;
+    
+    if(bottom >= windowH)
+    {
+        // Bounce the particle
+        bodies[id].pos.y = windowH - halfHeight;
+        bodies[id].vel.y *= -0.8; // Coefficient of restitution (80% bounce)
+        
+        // Apply friction when on floor
+        if(abs(bodies[id].vel.y) < 10.0)
+        {
+            bodies[id].vel.x *= 0.95; // Floor friction
+        }
+    }
+
+    // Ceiling collision
+    float top = bodies[id].pos.y - halfHeight;
+    if(top <= 0)
+    {
+        bodies[id].pos.y = halfHeight;
+        bodies[id].vel.y *= -0.8;
+    }
+
+    // Right wall collision
+    float right = bodies[id].pos.x + halfWidth;
+    if(right >= windowW)
+    {
+        bodies[id].pos.x = windowW - halfWidth;
+        bodies[id].vel.x *= -0.8;
+    }
+
+    // Left wall collision
+    float left = bodies[id].pos.x - halfWidth;
+    if(left <= 0)
+    {
+        bodies[id].pos.x = halfWidth;
+        bodies[id].vel.x *= -0.8;
+    }
+} 

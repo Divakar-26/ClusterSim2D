@@ -1,0 +1,3 @@
+/home/divakar/Desktop/GPU_Physics_Engine/build/CMakeFiles/app.dir
+/home/divakar/Desktop/GPU_Physics_Engine/build/CMakeFiles/edit_cache.dir
+/home/divakar/Desktop/GPU_Physics_Engine/build/CMakeFiles/rebuild_cache.dir
